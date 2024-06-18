@@ -1,0 +1,9 @@
+#notifications {
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 100vh;
+    color: black;
+
+}

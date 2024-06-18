@@ -1,0 +1,19 @@
+#login {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: black;
+
+}
+
+.login-container {
+    position: fixed;
+    width: 560px;
+    height: 490px;
+    background-color: #D9D9D9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

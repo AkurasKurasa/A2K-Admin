@@ -1,0 +1,56 @@
+#personnel {
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 100vh;
+    color: black;
+
+}
+
+.personnel-layout {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: relative;
+    top: 7.5rem;
+    width: 90%;
+    min-height: 80%;
+    height: fit-content;
+    overflow: scroll;
+    padding: 0.5rem;
+}
+
+.personnel-header {
+    margin: 0 0 5rem 0;
+    width: 100%;
+    font-family: var(--assistant);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #9B9B9B;
+    white-space: nowrap;
+}
+
+.personnel-container {
+    width: 95%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 7rem;
+    margin-bottom: 5rem;
+}
+
+.personnel-employee-container {
+    max-width: 95%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    margin-bottom: 10rem;
+    overflow: scroll;
+}

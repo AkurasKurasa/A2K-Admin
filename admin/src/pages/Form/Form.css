@@ -1,0 +1,137 @@
+#form {
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 100vh;
+    color: black;
+    overflow: hidden;
+
+}
+
+.form-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    top: 6rem;
+    width: 90%;
+    min-height: 80%;
+    height: fit-content;
+    overflow: hidden;
+    padding: 0.5rem;
+}
+
+.form-header {
+    font-family: var(--assistant);
+    font-size: 26px;
+    font-weight: 800;
+    color: #9B9B9B;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    letter-spacing: 2px;
+    margin: 0 0 2rem 0;
+}
+
+.form-wrapper {
+    width: fit-content;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: auto auto;
+    max-height: min-content;
+    gap: 5rem;
+}
+
+.form-wrapper > * {
+    /* border: 1px black solid; */
+}
+
+.form-image-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.form-image {
+    width: 450px;
+    background-color: #D9D9D9;
+    height: 95%;
+}
+
+.form-info-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.form-info {
+    width: 400px;
+    min-height: 530px;
+    max-height: 530px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow: scroll;
+    padding: 5px;
+}
+
+.form-param-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    letter-spacing: 1px;
+    width: 100%;
+    margin-bottom: 2.5rem;
+}
+
+.form-param-header {
+    width: 100%;
+    font-family: var(--assistant);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #9B9B9B;
+    margin: 0 0 6px 0;
+}
+
+.form-param-input {
+    border: none;
+    border-radius: 0;
+    background-color: #EEEEEE;
+    height: 30px;
+    width: 95%;
+    border: 1px #D9D9D9 solid;
+    padding: 0;
+}
+
+.form-control-container {
+    width: 400px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    background-color: inherit;
+    padding: 1rem 0;
+}
+
+.form-control-container > button {
+    height: 100%;
+    width: 100px;
+    border-radius: 0;
+    background-color: #D9D9D9;
+    font-family: var(--blinker);
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #4B4B4B;
+    border: 4px #4b4b4b solid;
+    cursor: pointer;
+}

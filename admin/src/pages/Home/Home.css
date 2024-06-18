@@ -1,0 +1,129 @@
+#home {
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 100vh;
+    color: black;
+    position: relative;
+
+}
+
+.home-layout {
+    display: grid;
+    grid-template-columns: 475px 475px;
+    gap: 5rem;
+    position: relative;
+    top: 7.5rem;
+    width: fit-content;
+    height: 680px;
+    max-height: 680px;
+}
+
+.home-layout > div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.home-header {
+    width: 100%;
+    font-family: var(--assistant);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #9B9B9B;
+    white-space: nowrap;
+}
+
+.home-highlighted {
+    color: #DA7908;
+    font-family: var(--ramabhadra);
+    font-size: 10px;
+    letter-spacing: 4px;
+    width: 100%;
+    margin: 0;
+    margin: 1rem 0 0.5rem 0;
+}
+
+.home-container {
+    /* border: 1px black solid; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+    width: 100%;
+    height: 680px;
+}
+
+.group-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    height: fit-content;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.value-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 60%;
+    height: fit-content;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.value-container > h1 {
+    color: #4B4B4B;
+    font-family: var(--ramabhadra);
+    font-size: 10px;
+}
+
+.value-container > p {
+    color: #9B9B9B;
+    font-family: var(--ramabhadra);
+    font-size: 10px;
+}
+
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    max-height: 680px;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.projects-project {
+    width: 90%;
+    min-height: 250px;
+    background-color: #D9D9D9;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.projects-project:hover {
+    transform: scale(1.2);
+    margin: 2rem 0;
+}
+
+.status-status {
+    width: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-family: var(--ramabhadra);
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #9B9B9B;
+    margin-top: 1rem;
+}

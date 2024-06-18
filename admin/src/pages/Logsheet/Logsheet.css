@@ -1,0 +1,120 @@
+#logsheet {
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 100vh;
+    color: black;
+    position: relative;
+}
+
+.logsheet-layout {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: relative;
+    top: 5rem;
+    width: 85%;
+    min-height: 100vh;
+    height: fit-content;
+    overflow: scroll;
+    padding: 0.5rem;
+}
+
+.logsheet-header {
+    display: flex;
+    align-items: center;
+    background-color: #E4E4E4;
+    justify-content: flex-start;
+    width: 90%;
+    padding: 0.5rem;
+    position: sticky;
+    top: 80px;
+    z-index: 5;
+}
+
+.logsheet-date {
+    font-family: var(--assistant);
+    font-size: 21px;
+    font-weight: 800;
+    color: #9B9B9B;
+    letter-spacing: 2px;
+    margin-right: 1.5rem;
+}
+
+.logsheet-up {
+    content: url("../../assets/arrow.svg");
+    transform: rotate(-90deg);
+    border-radius: 100%;
+    background-color: #D9D9D9;
+    padding: 0.1rem;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.logsheet-up:hover {
+    transform: rotate(-90deg) scale(1.1);
+}
+
+.logsheet-down {
+    content: url("../../assets/arrow.svg");
+    transform: rotate(90deg);
+    border-radius: 100%;
+    background-color: #D9D9D9;
+    padding: 0.1rem;
+    cursor: pointer;
+}
+
+.logsheet-down:hover {
+    transform: rotate(90deg) scale(1.1);
+}
+
+.logsheet-wrapper {
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.logsheet-time-stamp {
+    font-family: var(--assistant);
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #9B9B9B;
+    width: 100%;
+    margin: 0 0 1.5rem 0;
+}
+
+.logsheet-log {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #D9D9D9;
+    width: 96%;
+    padding: 12.5px;
+    margin: 0 0 0.5rem 0;
+}
+
+.log-time {
+    font-family: var(--blinker);
+    font-size: 12px;
+    font-weight: 700;
+    color: #8A8A8A;
+    margin-left: 1rem;
+    letter-spacing: 1px;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.log-info {
+    font-family: var(--blinker);
+    font-size: 12px;
+    font-weight: 500;
+    color: #8A8A8A;
+    margin-left: 1rem;
+    letter-spacing: 1px;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+}
