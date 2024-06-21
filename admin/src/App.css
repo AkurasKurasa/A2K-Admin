@@ -6,6 +6,9 @@
   --blinker: "Blinker", sans-serif;
   --ramabhadra: "Ramabhadra", sans-serif;
   --assistant: "Assistant", sans-serif;
+
+  --backgroundColor: #e4e4e4;
+
 }
 
 #main-layout {
@@ -14,4 +17,46 @@
   min-height: 100vh;
   min-width: 100vw;
   display: relative;
+}
+
+.flex-cc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-cfs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.flex-fsfs {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.github-icon {
+  content: url('./assets/github-icon.svg');
+}
+
+.figma-icon {
+  content: url('./assets/figma-icon.svg');
+} 
+
+.mail-icon {
+  content: url('./assets/mail-icon.svg');
+}
+
+.linkedin-icon {
+  content: url('./assets/linkedin-icon.svg');
+}
+
+.msteams-icon {
+  content: url('./assets/teams-icon.svg');
+}
+
+.whatsapp-icon {
+  content: url('./assets/whatsapp-icon.svg');
 }

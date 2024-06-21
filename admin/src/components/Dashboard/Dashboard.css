@@ -1,190 +1,193 @@
 #dashboard {
+  position: fixed;
+  top: 0;
+  left: 10px;
 
-    position: fixed;
-    top: 0;
-    left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
+  background-color: #e4e4e4;
 
-    background-color: #E4E4E4;
+  overflow: hidden;
 
-    overflow: hidden;
+  height: 100vh;
+  width: 285px;
 
-    height: 100vh;
-    width: 285px;
+  border-left: 2px #bababa solid;
+  border-right: 2px #bababa solid;
 
-    border-left: 2px #BABABA solid;
-    border-right: 2px #BABABA solid;
-
-    z-index: 100;
+  z-index: 10;
 }
 
 .logo-container {
-    width: fit-content;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5rem;
 }
 
 .logo {
-    width: 160px;
-    height: 75px;
-    margin-top: 2.5rem;
+  width: 160px;
+  height: 75px;
+
+  margin-top: 2.5rem;
 }
 
-.logo-temp {
-    color: #DA7908;
-    font-family: var(--blinker);
-    font-weight: 700;
-    margin: 0 0 5rem 10px;
-    letter-spacing: 7px;
+.logo-admin-text {
+  color: #da7908;
+  font-family: var(--blinker);
+  font-weight: 700;
+  letter-spacing: 7px;
+
+  margin: 0 0 0 10px;
 }
 
 .navigation-container {
-
-    width: 80%;
-    height: 100%;
-
+  width: 228px;
+  height: fit-content;
 }
 
 .navigation-header {
-    color: #6C6C6C;
-    font-family: var(--assistant);
-    font-size: 11px;
-    font-weight: 700;
-    margin: 0 0 1.5rem 0;
-    letter-spacing: 1px;
+  font-family: var(--assistant);
+  font-size: 11px;
+  font-weight: 700;
+  color: #6c6c6c;
+  letter-spacing: 1px;
+
+  margin: 0 0 1.5rem 0;
 }
 
 .navigation-option {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 2.5rem;
-    letter-spacing: 2px;
-    font-family: var(--ramabhadra);
-    font-size: 13px;
-    color: #4B4B4B;
-    position: relative;
-    margin: 0 0 18px 0;
-    transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  letter-spacing: 2px;
+  font-family: var(--ramabhadra);
+  font-size: 13px;
+  color: #4b4b4b;
+
+  position: relative;
+
+  margin: 0 0 18px 0;
+  padding-left: 2.5rem;
+
+  transition: all 0.15s;
 }
 
 .navigation-option:hover {
-    color: #DA7908;
-    cursor: pointer;
+  color: #da7908;
+  cursor: pointer;
 }
 
-
 .navigation-option-active {
-    color: #DA7908;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 2.5rem;
-    letter-spacing: 2px;
-    font-family: var(--ramabhadra);
-    font-size: 13px;
-    position: relative;
-    margin: 0 0 18px 0;
+  color: #da7908;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 2.5rem;
+  letter-spacing: 2px;
+  font-family: var(--ramabhadra);
+  font-size: 13px;
+  position: relative;
+  margin: 0 0 18px 0;
 }
 
 .navigation-option-dropdown {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 2.5rem;
-    letter-spacing: 2px;
-    font-family: var(--ramabhadra);
-    font-size: 13px;
-    color: #4B4B4B;
-    position: relative;
-    margin: 0 0 18px 0;
-    cursor: pointer;
-    transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 2.5rem;
+  letter-spacing: 2px;
+  font-family: var(--ramabhadra);
+  font-size: 13px;
+  color: #4b4b4b;
+  position: relative;
+  margin: 0 0 18px 0;
+  cursor: pointer;
+  transition: all 0.15s;
 }
 
 .navigation-option-dropdown:hover {
-    color: #DA7908;
+  color: #da7908;
 }
 
 .navigation-option-dropdown::after {
-    position: absolute;
-    top: 0;
-    right: 18px;
-    width: 30px;
-    height: 30px;
-    content: url("../src/assets/arrow.svg");
+  position: absolute;
+  top: 0;
+  right: 18px;
+  width: 30px;
+  height: 30px;
+  content: url('../src/assets/arrow.svg');
 }
 
 .navigation-option-dropdown:hover::after {
-    content: url("../src/assets/arrow-active.svg");
+  content: url('../src/assets/arrow-active.svg');
 }
 
-
 .navigation-option-dropdown-active {
-    color: #DA7908;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 2.5rem;
-    letter-spacing: 2px;
-    font-family: var(--ramabhadra);
-    font-size: 13px;
-    position: relative;
-    margin: 0 0 18px 0;
-    transition: all 0.9s;
+  color: #da7908;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 2.5rem;
+  letter-spacing: 2px;
+  font-family: var(--ramabhadra);
+  font-size: 13px;
+  position: relative;
+  margin: 0 0 18px 0;
+  transition: all 0.9s;
 }
 
 .navigation-option-dropdown-active::after {
-    content: url("../src/assets/arrow-active.svg");
-    position: absolute;
-    top: 0;
-    right: 18px;
-    width: 30px;
-    height: 30px;
-    transform: rotate(90deg);
+  content: url('../src/assets/arrow-active.svg');
+  position: absolute;
+  top: 0;
+  right: 18px;
+  width: 30px;
+  height: 30px;
+  transform: rotate(90deg);
 }
 
 .navigation-dropdown {
-    display: none;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    width: inherit;
-    height: fit-content;
-    margin-left: 2.5rem;
-    margin-bottom: 18px;
-    padding-left: 1.3rem;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  width: inherit;
+  height: fit-content;
+  margin-left: 2.5rem;
+  margin-bottom: 18px;
+  padding-left: 1.3rem;
 }
 
 .navigation-dropdown-active {
-    display: flex;
+  display: flex;
 }
 
 .navigation-dropdown > li {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    letter-spacing: 2px;
-    font-family: var(--ramabhadra);
-    font-size: 13px;
-    color: #9B9B9B;
-    position: relative;
-    margin: 0 0 18px 0;
-    cursor: pointer;
-    transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  letter-spacing: 2px;
+  font-family: var(--ramabhadra);
+  font-size: 13px;
+  color: #9b9b9b;
+  position: relative;
+  margin: 0 0 18px 0;
+  cursor: pointer;
+  transition: all 0.15s;
 }
 
 .navigation-dropdown > li:hover {
-    color: rgba(218, 120, 8, 0.65);
+  color: rgba(218, 120, 8, 0.65);
 }
 
 .navigation-dropdown > li:last-child {
-    margin: 0;
+  margin: 0;
 }

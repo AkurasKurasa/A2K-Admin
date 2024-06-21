@@ -55,8 +55,8 @@
     justify-content: center;
     gap: 3.5rem;
     position: relative;
-    top: calc(50% - 225px);
-    left: 568px;    
+    top: calc(50% - 250px);
+    left: calc(50% - 255px);    
     width: 700px;
     height: 450px;
     padding: 1.5rem;

@@ -33,6 +33,12 @@
     white-space: nowrap;
 }
 
+.personnel-wrapper {
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 10rem;
+}
+
 .personnel-container {
     width: 95%;
     height: fit-content;
