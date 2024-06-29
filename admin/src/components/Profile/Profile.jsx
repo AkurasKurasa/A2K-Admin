@@ -1,14 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Profile.css';
+import { supabase } from '../../config/supabase';
 
-const Profile = ({ name, title }) => {
+const Profile = ({ user }) => {
   const [showModal, setShowModal] = useState(false);
+  const [ recentProject, setRecentProject ] = useState()
+
+  const fetchRecentProject = async () => {
+    const { data, error } = await supabase.from('projects').select().contains('assigned', [user.fullName]).order('created_at', { ascending: false }).limit(1).single()
+    setRecentProject(data)
+  }
+
+  useEffect(() => {
+    if ( showModal ) {
+      fetchRecentProject()
+    }
+  }, [showModal])
+  
 
   return (
     <div className='personnel-person'>
-      <div className='personnel-person-image' onClick={() => setShowModal(true)}></div>
-      <span className='personnel-person-name'>{name}</span>
-      <span className='personnel-person-title'>{title}</span>
+      <img className='personnel-person-image' onClick={() => setShowModal(true)} src={user.image} style={{ backgroundSize: 'contain', backgroundPosition: 'center' }}/>
+      <span className='personnel-person-name'>{user.fullName}</span>
+      <span className='personnel-person-title'>{user.role}</span>
       {showModal && (
         <div
           className='modal-wrapper'
@@ -20,23 +34,23 @@ const Profile = ({ name, title }) => {
         >
           <div className='modal'>
             <div className='modal-container-1'>
-              <div className='modal-image' style={{ width: '265px', height: '265px' }}></div>
-              <h1 className='modal-name'>PAUL ANDREI CALMA</h1>
-              <p className='modal-title'>Intern</p>
-              <p className='modal-role'>Web Developer</p>
+              <img className='modal-image' style={{ width: '265px', height: '265px' }} src={user.image} />
+              <h1 className='modal-name'>{user.fullNameUppercase}</h1>
+              <p className='modal-title'>{user.position}</p>
+              <p className='modal-role'>{user.role}</p>
               <div className='modal-socials'>
-                <img src='../src/assets/github-icon.svg' />
-                <img src='../src/assets/whatsapp-icon.svg' />
-                <img src='../src/assets/linkedin-icon.svg' />
-                <img src='../src/assets/figma-icon.svg' />
-                <img src='../src/assets/mail-icon.svg' />
-                <img src='../src/assets/teams-icon.svg' />
+                <a href={user.github} target='_blank' className='github-icon'></a>
+                <a href={user.whatsapp} target='_blank' className='whatsapp-icon'></a>
+                <a href={user.linkedin} target='_blank' className='linkedin-icon'></a>
+                <a href={user.figma} target='_blank' className='figma-icon'></a>
+                <a href={user.email} target='_blank' className='mail-icon'></a>
+                <a href={user.microsoft} target='_blank' className='msteams-icon'></a>
               </div>
             </div>
             <div className='modal-container-2'>
               <div className='modal-project'>
                 <h1 className='modal-header'>RECENT ASSIGNED PROJECT:</h1>
-                <div className='modal-project-image'></div>
+                { recentProject && <div className='modal-project-image'>{recentProject.project_name}</div> }
                 <div className='modal-schedule'>
                   <h1 className='modal-header'>WEEKLY SCHEDULE:</h1>
                   <div className='modal-schedule-container'>

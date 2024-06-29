@@ -108,7 +108,12 @@
     padding: 0;
     width: 100%;
     height: 35px;
+    transition: all 0.1s;
     cursor: pointer;
+}
+
+.login-button-main:hover {
+    transform: scale(1.02);
 }
 
 .login-button-alternative {

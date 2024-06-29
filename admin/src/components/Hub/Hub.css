@@ -11,6 +11,12 @@
     background-color: #E4E4E4;
 }
 
+#hub img {
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+}
+
 .user-container {
     display: flex;
     align-items: center;

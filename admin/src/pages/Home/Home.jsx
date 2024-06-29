@@ -1,6 +1,35 @@
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import './Home.css'
+import { supabase } from '../../config/supabase'
+import { useAuthContext } from '../../context/AuthContext'
 
 const Home = () => {
+
+  const { user } = useAuthContext()
+  const [ projects, setProjects ] = useState()
+
+  const fetchProjects = async () => {
+    const { data, error } = await supabase.from('projects').select().order('created_at', { ascending: true })
+    let userProjects = []
+
+    if ( data ) {
+      data.forEach(project => {
+        if (project.assigned.includes(user.fullName)) {
+          userProjects.push(project)
+        }
+      });
+    }
+
+    setProjects(userProjects)
+    
+  }
+
+  useEffect(() => {
+    fetchProjects()
+  }, [user])
+  
+
   return (
     <div id='home'>
       <div className="home-layout">
@@ -9,12 +38,14 @@ const Home = () => {
           <div className='home-container'>
             <h1 className='home-header'>ASSIGNED PROJECTS</h1>
             <div className='projects-container'>
-              <article className='projects-project'></article>
-              <article className='projects-project'></article>
-              <article className='projects-project'></article>
-              <article className='projects-project'></article>
-              <article className='projects-project'></article>
-              <article className='projects-project'></article>
+              
+              { projects && 
+                projects.map((project, index) => {
+                  return <Link key={index} to={`/project/${project.project_id}`} className='projects-project'>
+                    <article>{project.project_name}</article>
+                    </Link>
+                }) 
+              }
             </div>
           </div>
         </div>

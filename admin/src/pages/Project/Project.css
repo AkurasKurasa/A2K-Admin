@@ -66,10 +66,13 @@
 }
 
 .project-highlight-container {
-    border: 1px black solid;
+    /* border: 1px black solid; */
     height: 400px;
     width: 100%;
     margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .project-description-container {

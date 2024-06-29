@@ -6,36 +6,44 @@ const Auth = createContext();
 
 export const AuthProvider = ({ children }) => {
 
-  const [ user, setUser ] = useState(null);
   const [ session, setSession ] = useState(null)
+  const [ userId, setUserId ] = useState(null)
+  const [ user, setUser ] = useState(null)
 
-  useEffect(() => {
+  useEffect(() => { 
 
-    supabase.auth.getSession()
-    .then((auth) => {
-      console.log(auth)
-      if(auth.data.session) {
-        setUser(auth.data.session.user)
-      } else {
-        setUser(null)
-      }
-    })
+    const getSession = async () => { 
 
-    const test = async () => {
-      const { data, error } = await supabase.from('users').select().eq('id', '0cc6dfe9-8915-46b0-a098-8ae88f118bd1')
-      console.log(data)
+        supabase.auth.getSession().then((data) => {
+          
+          setSession(data.data.session.access_token)
+          setUserId(data.data.session.user.id)
+          
+          if ( userId ) {
+            getUserInfo()
+          }
+          
+        })
+
     }
+    getSession()
 
-    test()
-
-  }, [])
+  }, [session])
   
+  const getUserInfo = async () => {
+    const { data, error } = await supabase.from('users').select().eq('id', userId).single()
+    setUser(data)
+
+  }
 
   const value = {
-    user,
-    setUser,
     session,
-    setSession
+    userId,
+    user,
+    setSession,
+    setUserId,
+    setUser,
+    getUserInfo
   };
 
   return <Auth.Provider value={value}>{children}</Auth.Provider>;

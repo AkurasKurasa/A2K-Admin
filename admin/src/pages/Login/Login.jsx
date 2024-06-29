@@ -5,7 +5,7 @@ import './Login.css'
 import { useAuthContext } from '../../context/AuthContext'
 
 const Login = () => {
-  const { setUser } = useAuthContext()
+  const { setSession, setUserId, getUserInfo } = useAuthContext()
   const navigate = useNavigate();
 
   const [ info, setInfo ] = useState({
@@ -25,11 +25,12 @@ const Login = () => {
           email: info.email,
           password: info.password
         }
-      
       )
 
       if (error) throw error
-      setUser(data.session)
+      getUserInfo()
+      setSession(data.session.access_token)
+      setUserId(data.user.id)
       navigate('/')
       
     } catch (error) {
@@ -69,13 +70,6 @@ const Login = () => {
 
       <p className="login-message">In order to use an accessible  account, please talk to management.</p>
       
-        {/* <div className="login-container">
-          <form action="" onSubmit={handleSubmit}>
-                <input type="text" name='email' onBlur={handleChange}/>
-                <input type="text" name='password' onBlur={handleChange}/>
-                <button>Log In</button>
-          </form>
-        </div> */}
     </div>
   )
 }

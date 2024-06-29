@@ -1,9 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { supabase } from '../../config/supabase';
 import './Dashboard.css';
 
 const Dashboard = () => {
-  const [activeOption, setActiveOption] = useState('home');
+  const [ activeOption, setActiveOption ] = useState('home');
+  const [ projects, setProjects ] = useState()
+
+  const fetchProjects = async () => {
+    const { data, error } = await supabase.from('projects').select().order('created_at', {ascending: true})
+    setProjects(data)
+  }
+
+  useEffect(() => {
+    fetchProjects()
+  }, [])
+  
 
   return (
     <nav id='dashboard'>
@@ -53,18 +65,17 @@ const Dashboard = () => {
             activeOption == 'projects' ? 'navigation-dropdown navigation-dropdown-active' : 'navigation-dropdown'
           }
         >
-          <li>
-            <Link to='/project'>PROJECT</Link>
-          </li>
-          <li>
-            <Link to='/project'>PROJECT</Link>
-          </li>
-          <li>
-            <Link to='/project'>PROJECT</Link>
-          </li>
-          <li>
-            <Link to='/project'>PROJECT</Link>
-          </li>
+
+          {
+            projects && 
+            projects.map((project, index) => {
+              return <li key={index}>
+                <Link to={`/project/${project.project_id}`} style={{color: '#9b9b9b'}}>{project.project_name}</Link>
+              </li>
+            })
+          }
+
+
         </ul>
 
         <p

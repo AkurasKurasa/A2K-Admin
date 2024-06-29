@@ -13,8 +13,8 @@ const Hub = () => {
         </Link>
       </div>
       <div className="user-container">
-        <Link to="/profile" className="user-profile"></Link>
-        <p className="user-name">A. Calma</p>
+        { user && <Link to="/profile" className="user-profile"><img src={user.image} /></Link> }
+        { user && <p className="user-name">{ user ? user.hubName : '' }</p> }
       </div>
     </div>
   );

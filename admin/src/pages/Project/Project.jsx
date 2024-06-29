@@ -1,23 +1,42 @@
 import './Project.css'
+import Slider from '../../components/Slider/Slider'
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { supabase } from '../../config/supabase'
 
 const Project = () => {
+
+    const { id } = useParams()
+    const [ projectData, setProjectData ] = useState()
+    const fetchProject = async () =>  {
+        const { data, error } = await supabase.from('projects').select().eq('project_id', id).single()
+        setProjectData(data)
+    }
+
+    useEffect(() => {
+      fetchProject()
+    }, [id])
+    
+
   return (
     <div id='project'>
         <div className="project-layout">
             <div className="project-header">
                 <h1 className="project-heading">PROJECT NAME:</h1>
-                <h1 className="project-project-name">A2K ADMIN PANEL</h1>
+                { projectData && <h1 className="project-project-name">{projectData.project_name}</h1> }
                 <div className="project-socials">
                     <img src="../src/assets/github-icon.svg" alt="" />
                     <img src="../src/assets/figma-icon.svg" alt="" />
                 </div>
             </div>
-            <div className="project-highlight-container"></div>
-            <div className="project-description-container">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, temporibus? Tempora corporis quia voluptatum dolorem soluta perspiciatis adipisci ex. Laborum illo ut, sequi tempore deserunt molestias tenetur architecto quisquam nihil.
-                Aliquam placeat quam vitae eius hic veritatis veniam vel odit, iure voluptatem possimus totam eos qui iusto quidem in perspiciatis alias consequatur facilis aperiam non cupiditate! Dolorum earum consequatur distinctio!
-                Consequuntur dolore est non dolor quod nihil nulla aspernatur saepe rem, quas provident sed, veniam deleniti, consectetur eum reprehenderit consequatur libero in odit?
+            <div className="project-highlight-container">
+                <Slider />
             </div>
+            { projectData &&
+                <div className="project-description-container">
+                    {projectData.project_description}
+                </div>
+            }
             <div className="project-info-container">
 
                 <div className="project-personnel-container">

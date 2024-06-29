@@ -15,14 +15,15 @@ import Login from './pages/Login/Login.jsx'
 import { useAuthContext } from './context/AuthContext.jsx'
 
 function App() {
-  const { user } = useAuthContext();
+  const { session } = useAuthContext();
 
   return (
     <>
 
-    { user ? 
+    { session ? 
       <main id='main-layout'>
         <Hub />
+        
 
         <div className='dashboard-grid'>
           <Dashboard />
@@ -35,7 +36,7 @@ function App() {
           <Route path='/notifications' element={<Notifications />}/>
           <Route path='/profile' element={<User />}/>
           <Route path='/form' element={<Form />}/>
-          <Route path='/project' element={<Project />}/>
+          <Route path='/project/:id' element={<Project />}/>
         </Routes>
 
       </main>
