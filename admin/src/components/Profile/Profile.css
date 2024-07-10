@@ -169,6 +169,7 @@
     height: 145px;
     background-color: #D9D9D9;
     margin: 0 0 2rem 0;
+    border: 2px #9c9c9c solid;
 }
 
 .modal-schedule {

@@ -7,46 +7,68 @@ const Auth = createContext();
 export const AuthProvider = ({ children }) => {
 
   const [ session, setSession ] = useState(null)
-  const [ userId, setUserId ] = useState(null)
   const [ user, setUser ] = useState(null)
+  const [ userData, setUserData ] = useState(null)
+  const [ loading, setLoading ] = useState(true)
 
   useEffect(() => { 
 
-    const getSession = async () => { 
-
-        supabase.auth.getSession().then((data) => {
-          
-          setSession(data.data.session.access_token)
-          setUserId(data.data.session.user.id)
-          
-          if ( userId ) {
-            getUserInfo()
-          }
-          
-        })
-
+    const getSession = async () => {
+      const { data, error } = await supabase.auth.getSession();
+      if ( error ) throw error
+      setUser(data.session?.user)
+      setSession(data.session)
+      setLoading(false)
+      if (user) { console.log(user) }
     }
+
+    const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+      setUser(session?.user)
+      setLoading(false)
+    })
+
     getSession()
 
-  }, [session])
-  
-  const getUserInfo = async () => {
-    const { data, error } = await supabase.from('users').select().eq('id', userId).single()
-    setUser(data)
+    return () => {
+      data.subscription.unsubscribe()
+    }
 
-  }
+  }, [])
+
+  useEffect(() => {
+    
+    const getUserInfo = async () => {
+
+      if ( !session ) {
+        setUserData(null)
+      } else {
+        const { data, error } = await supabase
+        .from('users')
+        .select()
+        .eq('id', user.id)
+        .single()
+
+        if (error) throw error
+        setUserData(data)
+      }
+    }
+
+    getUserInfo()
+    
+  }, [user])
+  
+
 
   const value = {
     session,
-    userId,
     user,
     setSession,
-    setUserId,
     setUser,
-    getUserInfo
+    userData
   };
 
-  return <Auth.Provider value={value}>{children}</Auth.Provider>;
+  return <Auth.Provider value={value}>{ !loading && children }</Auth.Provider>;
 };
 
 export const useAuthContext = () => {

@@ -57,8 +57,11 @@
 
 .form-image {
     width: 450px;
-    background-color: #D9D9D9;
     height: 95%;
+    border: 3px #D9D9D9 solid;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.2);
 }
 
 .form-info-container {
@@ -105,11 +108,14 @@
 .form-param-input {
     border: none;
     border-radius: 0;
-    background-color: #EEEEEE;
+    background-color: #CECECE;
     height: 30px;
     width: 95%;
     border: 1px #D9D9D9 solid;
     padding: 0;
+    margin-bottom: 1rem;
+    color: black;
+    padding-left: 0.5rem;
 }
 
 .form-control-container {

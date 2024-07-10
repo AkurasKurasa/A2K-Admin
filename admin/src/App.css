@@ -60,3 +60,7 @@
 .whatsapp-icon {
   content: url('./assets/whatsapp-icon.svg');
 }
+
+.jira-icon {
+  content: url('./assets/jira-icon.svg');
+}

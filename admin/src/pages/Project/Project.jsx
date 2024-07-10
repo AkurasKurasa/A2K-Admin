@@ -3,6 +3,7 @@ import Slider from '../../components/Slider/Slider'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { supabase } from '../../config/supabase'
+import { Link } from 'react-router-dom'
 
 const Project = () => {
 
@@ -25,12 +26,13 @@ const Project = () => {
                 <h1 className="project-heading">PROJECT NAME:</h1>
                 { projectData && <h1 className="project-project-name">{projectData.project_name}</h1> }
                 <div className="project-socials">
-                    <img src="../src/assets/github-icon.svg" alt="" />
-                    <img src="../src/assets/figma-icon.svg" alt="" />
+                    { projectData && <Link style={{ content: "url('../src/assets/github-icon.svg')"}} to={projectData.project_github} target='_blank'></Link> }
+                    { projectData && <Link style={{ content: "url('../src/assets/figma-icon.svg')"}} to={projectData.project_figma} target='_blank'></Link> }
+                    { projectData && <Link style={{ content: "url('../src/assets/jira-icon.svg')"}} to={projectData.project_jira} target='_blank'></Link> }
                 </div>
             </div>
             <div className="project-highlight-container">
-                <Slider />
+                { projectData && <Slider images={projectData.images}/> }
             </div>
             { projectData &&
                 <div className="project-description-container">
@@ -40,38 +42,30 @@ const Project = () => {
             <div className="project-info-container">
 
                 <div className="project-personnel-container">
-                    <h1 className="project-info-heading">ASSIGNED PERSONNEL AND ROLES:</h1>
+                    <h1 className="project-info-heading">ASSIGNED PERSONNEL:</h1>
 
-                    <div className="project-personnel">
-                        <h2 className="project-personnel-name">ANDREI CALMA</h2>
-                        <p className="project-personnel-role">Frontend</p>
-                        <p className="project-personnel-role">Backend</p>
-                        <p className="project-personnel-role">UI</p>
-                    </div>
+                    {   projectData && 
+                        projectData.assigned.map((name, index) => {
+                            return <div className="project-personnel" key={index}>
+                            <h2 className="project-personnel-name">{name}</h2>
+                        </div>
+                        })
+                    }
 
-                    <div className="project-personnel">
-                        <h2 className="project-personnel-name">RASTAFARI SARZONA</h2>
-                        <p className="project-personnel-role">Hardware</p>
-                    </div>
-
-                    <div className="project-personnel">
-                        <h2 className="project-personnel-name">ASHLEY SILOS</h2>
-                        <p className="project-personnel-role">Hardware</p>
-                    </div>
                 </div>
 
                 <div className="project-personnel-container">
                     <div className="project-date-container">
                         <h1 className="project-date-heading">PROJECT STARTED:</h1>
-                        <h1 className="project-date">June 10, 2024</h1>
+                        { projectData && <h1 className="project-date">{projectData.project_start}</h1> }
                     </div>
                     <div className="project-date-container">
                         <h1 className="project-date-heading">PROJECT FINISHED:</h1>
-                        <h1 className="project-date">--/--/--</h1>
+                        { projectData && <h1 className="project-date">{projectData.project_end}</h1> }
                     </div>
                     <div className="project-date-container">
                         <h1 className="project-date-heading">PROJECT DEADLINE:</h1>
-                        <h1 className="project-date">--/--/--</h1>
+                        { projectData && <h1 className="project-date">{projectData.project_deadline}</h1> }
                     </div>
                 </div>
             </div>

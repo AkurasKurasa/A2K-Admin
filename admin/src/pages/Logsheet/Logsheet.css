@@ -17,7 +17,8 @@
     position: relative;
     top: 5rem;
     width: 85%;
-    min-height: 100vh;
+    height: fit-content;
+    max-height: 100vh;
     height: fit-content;
     overflow: scroll;
     padding: 0.5rem;
@@ -75,6 +76,7 @@
 .logsheet-wrapper {
     margin-bottom: 2rem;
     width: 100%;
+    height: fit-content;
 }
 
 .logsheet-time-stamp {

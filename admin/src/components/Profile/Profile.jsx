@@ -7,7 +7,7 @@ const Profile = ({ user }) => {
   const [ recentProject, setRecentProject ] = useState()
 
   const fetchRecentProject = async () => {
-    const { data, error } = await supabase.from('projects').select().contains('assigned', [user.fullName]).order('created_at', { ascending: false }).limit(1).single()
+    const { data, error } = await supabase.from('projects').select().contains('assigned', [user.fullName]).order('created_at', { ascending: true }).limit(1).single()
     setRecentProject(data)
   }
 
@@ -49,8 +49,8 @@ const Profile = ({ user }) => {
             </div>
             <div className='modal-container-2'>
               <div className='modal-project'>
-                <h1 className='modal-header'>RECENT ASSIGNED PROJECT:</h1>
-                { recentProject && <div className='modal-project-image'>{recentProject.project_name}</div> }
+                  <h1 className='modal-header'>RECENT ASSIGNED PROJECT:</h1>
+                  { recentProject && <div className='modal-project-image' style={{backgroundImage: `url(${recentProject.images[0]})`, backgroundPosition: 'center', backgroundSize: 'cover' }}></div> }
                 <div className='modal-schedule'>
                   <h1 className='modal-header'>WEEKLY SCHEDULE:</h1>
                   <div className='modal-schedule-container'>

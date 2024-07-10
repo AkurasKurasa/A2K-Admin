@@ -3,7 +3,7 @@ import "./Hub.css";
 import { Link } from "react-router-dom";
 
 const Hub = () => {
-  const { user } = useAuthContext()
+  const { userData } = useAuthContext()
 
   return (
     <div id="hub">
@@ -13,8 +13,8 @@ const Hub = () => {
         </Link>
       </div>
       <div className="user-container">
-        { user && <Link to="/profile" className="user-profile"><img src={user.image} /></Link> }
-        { user && <p className="user-name">{ user ? user.hubName : '' }</p> }
+        { userData && <Link to="/profile" className="user-profile"><img src={userData.image} /></Link> }
+        { userData && <p className="user-name">{ userData.hubName }</p> }
       </div>
     </div>
   );

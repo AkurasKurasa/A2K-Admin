@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { supabase } from '../../config/supabase'
 import { useNavigate } from 'react-router-dom'
 import './Login.css'
 import { useAuthContext } from '../../context/AuthContext'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Login = () => {
-  const { setSession, setUserId, getUserInfo } = useAuthContext()
+  const { setSession, setUserId } = useAuthContext()
   const navigate = useNavigate();
 
   const [ info, setInfo ] = useState({
@@ -27,19 +29,55 @@ const Login = () => {
         }
       )
 
-      if (error) throw error
-      getUserInfo()
-      setSession(data.session.access_token)
-      setUserId(data.user.id)
+      if (error) notify()
       navigate('/')
       
     } catch (error) {
       console.log(error)
     }
   }
+
+  useEffect(() => {
+    
+    supabase.auth.getSession().then((data) => {
+      setSession(data.data.session)
+    })
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+    
+  }, [])
   
+  const notify = () => 
+    toast.error('Invalid credentials!', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored"
+    });
+
   return (
+    
     <div id='login'>
+      <ToastContainer
+        stacked={true}
+        position="top-right"
+        autoClose={3000}
+        limit={4}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        />
       <div className="login-logo-container">
         <div className="login-logo"></div>
         <div className="login-logo-admin">ADMIN</div>
@@ -63,8 +101,6 @@ const Login = () => {
 
         <div className="login-buttons-container">
           <button className="login-button-main">LOG IN</button>
-          {/* <button className="login-button-alternative" onClick={gitHubLogIn}>CONTINUE WITH MICROSOFT</button>
-          <button className="login-button-alternative">CONTINUE WITH GITHUB</button> */}
         </div>
       </form>
 

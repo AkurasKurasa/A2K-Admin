@@ -6,14 +6,21 @@ import './Dashboard.css';
 const Dashboard = () => {
   const [ activeOption, setActiveOption ] = useState('home');
   const [ projects, setProjects ] = useState()
+  const [ forms, setForms ] = useState()
 
   const fetchProjects = async () => {
     const { data, error } = await supabase.from('projects').select().order('created_at', {ascending: true})
     setProjects(data)
   }
 
+  const fetchForms = async () => {
+    const { data, error } = await supabase.from('forms').select().order('created_at', {ascending: true})
+    setForms(data)
+  }
+
   useEffect(() => {
     fetchProjects()
+    fetchForms()
   }, [])
   
 
@@ -87,7 +94,15 @@ const Dashboard = () => {
         <ul
           className={activeOption == 'forms' ? 'navigation-dropdown navigation-dropdown-active' : 'navigation-dropdown'}
         >
-          <li>
+          {
+            forms &&
+            forms.map((form, index) => {
+              return <li key={index}>
+                <Link to={`/form/${form.form_id}`} style={{color: '#9b9b9b'}}>{form.form_name}</Link>
+              </li>
+            })
+          }
+          {/* <li>
             <Link to='/form'>FORM</Link>
           </li>
           <li>
@@ -98,7 +113,7 @@ const Dashboard = () => {
           </li>
           <li>
             <Link to='/form'>FORM</Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>

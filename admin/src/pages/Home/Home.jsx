@@ -6,16 +6,23 @@ import { useAuthContext } from '../../context/AuthContext'
 
 const Home = () => {
 
-  const { user } = useAuthContext()
+  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+  const date = new Date()
+  const day = days[date.getDay()]
+
+  const { userData } = useAuthContext()
   const [ projects, setProjects ] = useState()
+  const [ officer, setOfficer ] = useState()
 
   const fetchProjects = async () => {
     const { data, error } = await supabase.from('projects').select().order('created_at', { ascending: true })
     let userProjects = []
 
+    if (error) throw error
+
     if ( data ) {
       data.forEach(project => {
-        if (project.assigned.includes(user.fullName)) {
+        if (project.assigned.includes(userData.fullName)) {
           userProjects.push(project)
         }
       });
@@ -25,9 +32,19 @@ const Home = () => {
     
   }
 
+  const fetchOfficer = async () => {
+    const { data, error } = await supabase.from('daily_duty_officer').select().eq('day', day).single()
+    if (error) throw error
+
+    if ( data ){
+      setOfficer(data)
+    }
+  }
+
   useEffect(() => {
     fetchProjects()
-  }, [user])
+    fetchOfficer()
+  }, [userData])
   
 
   return (
@@ -41,9 +58,9 @@ const Home = () => {
               
               { projects && 
                 projects.map((project, index) => {
-                  return <Link key={index} to={`/project/${project.project_id}`} className='projects-project'>
-                    <article>{project.project_name}</article>
-                    </Link>
+                  return <Link key={index} to={`/project/${project.project_id}`} className='projects-project' style={{backgroundImage: `url(${project.images[0]})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
+                    {/* <p>{project.project_name}</p> */}
+                  </Link>
                 }) 
               }
             </div>
@@ -71,11 +88,11 @@ const Home = () => {
               <p className='home-highlighted'>DAILY DUTY OFFICER</p>
               <span className="value-container">
                 <h1>PRIMARY:</h1>
-                <p>JOHN DOE</p>
+                { officer && <p> { officer.primary } </p> }
               </span>
               <span className="value-container">
                 <h1>RESERVE:</h1>
-                <p>JANE DOE</p>
+                { officer && <p> { officer.reserve } </p> }
               </span>
 
             </div>

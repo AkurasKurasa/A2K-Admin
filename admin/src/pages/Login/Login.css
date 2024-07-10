@@ -7,6 +7,7 @@
     min-height: 100vh;
     overflow: hidden;
     color: black;
+    width: 100vw;
 
 }
 
@@ -79,7 +80,7 @@
     padding: 0 0 0 0.5rem;
     height: 40px;
     width: 100%;
-    background-color: #EEEEEE;
+    background-color: #CECECE;
     color: black;
 }
 
