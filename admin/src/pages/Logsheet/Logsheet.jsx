@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import moment from 'moment'
 import './Logsheet.css'
 import { supabase } from '../../config/supabase'
 
@@ -14,10 +15,23 @@ const Logsheet = () => {
     .then(data => {
       const logs = []
       data.forEach(log => {
-        logs.push({ name: log['username'], message: 'clocked in.', time: log['timein'] })
-        logs.push({ name: log['username'], message: 'clocked out.', time: log['timeout'] })
+
+        if (log['timein'] != "00:00:00") {
+          console.log(new moment(log['timein'], 'HH:mm:ss')._d)
+          logs.push({ name: log['username'], message: 'clocked in.', time: log['timein'] })
+        }
+
+        if ( log['timeout'] != "00:00:00") {
+          logs.push({ name: log['username'], message: 'clocked out.', time: log['timeout'] })
+        }
+
+        setLogs(logs)
       });
-      setLogs(logs)
+      
+      const sorted_logs = logs.sort((a, b) => { 
+        return new moment(a.time, 'HH:mm:ss')._d - new moment(b.time, 'HH:mm:ss')._d 
+      })
+      setLogs(sorted_logs)
     })
   }
 
@@ -28,21 +42,18 @@ const Logsheet = () => {
     <div id='logsheet'>
       <div className='logsheet-header'>
         <h1 className="logsheet-date">{ date }</h1>
-        {/* <div className="logsheet-up"></div>
-        <div className="logsheet-down"></div> */}
       </div>
       <div className="logsheet-layout">
 
         <div className="logsheet-wrapper">
-
-          {/* <h1 className="logsheet-time-stamp">08:00 AM</h1> */}
 
           { 
             logs && 
             logs.map((log, index) => {
               return <div className="logsheet-log" key={index}>
               <h1 className="log-time">{log.time}</h1>
-              <p className="log-info">{log.name} {log.message}</p>
+              <h2 className='log-name'>{log.name}</h2>
+              <p className="log-info">{log.message}</p>
             </div>
             })  
           }
